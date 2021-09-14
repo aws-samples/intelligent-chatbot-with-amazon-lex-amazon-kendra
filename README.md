@@ -2,6 +2,14 @@
 
 Instructions and code for the Lex-Kendra builder session at the DC Summit.
 
+## Contributors
+
+* Neel Sendas, Senior Technical Account Manager
+* Sanjeev Pulapaka, Senior Solution Architect
+* Vadim Omeltchenko, Senior Solution Architect
+* Sherry Ding, Senior AI/ML Solution Architect
+* Randy DeFauw, Principal Solution Architect
+
 ## License
 
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
