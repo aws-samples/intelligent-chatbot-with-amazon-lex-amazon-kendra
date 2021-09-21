@@ -73,20 +73,6 @@ After you create your FAQs, you can try some Kendra searches by choosing Search 
 - how long does it take to do teeth cleanings?
 
 
-## Adding an S3 data source
-
-Amazon Kendra can also index documents stored in various data repositories - from S3 storage to relational databases, shared drives, etc. In this exercise we will add a sample dataset (AWS documentation) to our Kendra index just to demonstrate this capability.
-
-1. In Amazon Kendra console select the index you created earlier, and then choose Data sources on the left hand side.
-
-2. Click "Add data source" and then choose the very first option - Sample AWS documentation 
-
-   ![](./images/lex-kendra-s3ds2.png)
-
-3. On "Define attributes" screen name your data set (e.g. aws-docs) and click "Add data source"
-
-   ![](./images/lex-kendra-s3ds0.png)
-
 ## Creating a Lex Bot
 
 1. In the AWS Management Console, search services and choose **Amazon Lex**
@@ -138,15 +124,7 @@ Amazon Kendra can also index documents stored in various data repositories - fro
 
    ![](./images/lex-kendra-020.png)
 
-   Then expand Variations and add the following two lines:
-
-   `((x-amz-lex:kendra-search-response-answer-1))`
-
-   `((x-amz-lex:kendra-search-response-document-1))`
-
    Click **Save Intent** and then **Build** - After some time, the bot should be successfully built as indicated below
-
-   ![](./images/lex-kendra-21m3.png)
 
 8. Click **Test** and then type in a question such as `Where is the dental clinic?`. The bot should respond with an answer as indicated below.
 
@@ -158,25 +136,46 @@ Amazon Kendra can also index documents stored in various data repositories - fro
 
     ![](./images/lex-kendra-023.png)
 
-10. Finally, let's test how Amazon Kendra can provide answers based on AWS documentation. Try the following question:
 
-   `how many queries can kendra handle per day?`
+## OPTIONAL - Adding an S3 data source
 
-   You may get one of the two possible answers, either short one:
 
-   ![](./images/lex-kendra-031short.png)
+Amazon Kendra can also index documents stored in various data repositories - from S3 storage to relational databases, shared drives, etc. In this exercise we will add a sample dataset (AWS documentation) to our Kendra index just to demonstrate this capability.
 
-   or a long one:
+1. In Amazon Kendra console select the index you created earlier, and then choose Data sources on the left hand side.
 
-   ![](./images/lex-kendra-031long.png)
+2. Click "Add data source" and then choose the very first option - Sample AWS documentation 
 
-   If you asking this question again (or few times), you will see Amazon Kendra alternating between the short and the long versions. In this example we wanted to demonstrate both; however, in the actual real life implementation you would probably have very specific logic in a lambda function which can dynamically select the most appropriate format depending on the situation. 
+   ![](./images/lex-kendra-s3ds2.png)
 
-   Few other questions to try:
+3. On "Define attributes" screen name your data set (e.g. aws-docs) and click "Add data source"
 
-   `how many nitro instances can io1 EBS volume be attached to?`
+   ![](./images/lex-kendra-s3ds0.png)
 
-   `what is ebs maximum volume size?`
+4. Next, in the Lex console, open Kendra search intent which we added earlier ("Bot Versions"->"Draft version"->"English US"->"View Intents"->"Kendra search intent"->"Closing respoinses"->"Response sent to the user")
+
+5. Currently, the response is set to x-amz-lex:kendra-search-response-question_answer-answer-1 which references FAQ. Let's replace it with a the following value:
+
+   `((x-amz-lex:kendra-search-response-answer-1))`
+
+   Then expand Variations and add the following line:
+
+   `((x-amz-lex:kendra-search-response-document-1))`
+   
+
+6. Save the intent, build the bot and try testing Kendra's search of the indexed AWS documentation. 
+
+Some questions to try:
+
+`How many free tier hours are included with Kendra?`
+
+`How do I SSH into my EC2 instance`?
+
+`What is EBS?`
+
+`Concurrent executions in Lambda per region`
+
+
 
 ## Conclusion 
 
