@@ -132,7 +132,7 @@ After you create your FAQs, you can try some Kendra searches by choosing Search 
 
    Try asking other questions in the bot such as those posed to Kendra earlier. Try variations such as 'when will the clinic close' to see if the bot responds correctly
 
-9.  Now lets say you want to have the bot respond to a welcome greeting. Try adding an intent that does this as shown in Step 5. The bot should respond to standard greetings with a response such as Hi, how may i help you? as shown below
+9.  Now lets say you want to have the bot respond to a welcome greeting. Try adding an intent that does this as shown in Step 5. You need to select **Add empty intent**. The bot should respond to standard greetings with a response such as Hi, how may i help you? as shown below
 
     ![](./images/lex-kendra-023.png)
 
